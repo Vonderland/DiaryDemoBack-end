@@ -29,6 +29,7 @@ public class DiaryService {
                     resultMsg.setCode(102);
                 } else {
                     resultMsg.setCode(100);
+                    resultMsg.setData(diary);
                 }
             } catch (Exception e) {
                 System.out.println("addDiary " + Arrays.toString(e.getStackTrace()));
@@ -50,6 +51,7 @@ public class DiaryService {
                     resultMsg.setCode(102);
                 } else {
                     resultMsg.setCode(100);
+                    resultMsg.setData(diary);
                 }
             } catch (Exception e) {
                 System.out.println("updateDiary " + Arrays.toString(e.getStackTrace()));

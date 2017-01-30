@@ -190,5 +190,14 @@
 
 
     </dependencies>
-    
+
+    <!--注意这项配置，加上才能打包空文件夹！-->
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+            <includeEmptyDirectories>true</includeEmptyDirectories>
+        </configuration>
+    </plugin>
 </project>

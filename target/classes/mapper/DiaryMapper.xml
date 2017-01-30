@@ -12,12 +12,11 @@
 
     <update id="updateDiary">
         UPDATE diary SET
-        title = #{title},
-        description = #{description},
-        url = #{url},
-        eventTime = #{eventTime},
-        createTime = #{createTime},
-        updateTime = #{updateTime},
+        title = #{diary.title},
+        description = #{diary.description},
+        url = #{diary.url},
+        eventTime = #{diary.eventTime},
+        updateTime = #{diary.updateTime}
         WHERE id = #{id}
     </update>
 
