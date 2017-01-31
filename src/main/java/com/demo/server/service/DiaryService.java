@@ -29,6 +29,7 @@ public class DiaryService {
                     resultMsg.setCode(102);
                 } else {
                     resultMsg.setCode(100);
+                    resultMsg.setSize(rowCount);
                     resultMsg.setData(diary);
                 }
             } catch (Exception e) {
@@ -51,6 +52,7 @@ public class DiaryService {
                     resultMsg.setCode(102);
                 } else {
                     resultMsg.setCode(100);
+                    resultMsg.setSize(1);
                     resultMsg.setData(diary);
                 }
             } catch (Exception e) {

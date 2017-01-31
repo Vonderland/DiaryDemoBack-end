@@ -92,6 +92,7 @@ public class DiaryController {
             Gson gson = new Gson();
             return gson.toJson(resultMsg);
         }
+        diary.setId(Long.parseLong(id));
         resultMsg = diaryService.updateDiary(diary, Long.parseLong(id));
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
