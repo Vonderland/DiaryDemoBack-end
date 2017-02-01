@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.demo.server.dao.MomentDao">
+
+    <insert id="insertMoment" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO moment(title, location, eventTime, createTime, updateTime)
+        VALUES (#{title}, #{location}, #{eventTime}, #{createTime}, #{updateTime})
+    </insert>
+
+    <update id="updateMoment">
+        UPDATE moment SET
+        title = #{moment.title},
+        location = #{moment.location},
+        eventTime = #{moment.eventTime},
+        updateTime = #{moment.updateTime}
+        WHERE id = #{id}
+    </update>
+
+    <update id="deleteMoment">
+        UPDATE moment SET
+        isDeleted = TRUE
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectMoment" resultType="com.demo.server.bean.Moment">
+        SELECT * FROM moment
+        WHERE isDeleted = FALSE and eventTime &lt; #{timeCursor}
+        ORDER BY eventTime DESC, updateTime DESC LIMIT #{size}
+    </select>
+
+    <select id="selectAllMoment" resultType="com.demo.server.bean.Moment">
+        SELECT * FROM moment
+        WHERE isDeleted = FALSE
+        ORDER BY eventTime DESC, updateTime
+    </select>
+</mapper>

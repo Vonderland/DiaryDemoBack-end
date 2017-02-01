@@ -119,6 +119,7 @@ public class DiaryController {
             diary.setUrl(path);
         }
 
+        //TODO:注意，这里可能会有时区不一致的问题
         Long now = System.currentTimeMillis();
         if (add) {
             diary.setCreateTime(now);
