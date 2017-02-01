@@ -73,7 +73,7 @@ public class DiaryController {
         return gson.toJson(resultMsg);
     }
 
-    @RequestMapping(value = "/updateDiary", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/updateDiary", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public String updateDiary(@RequestParam(value = "id") String id,
                               @RequestParam(value = "title") String title,
@@ -99,7 +99,7 @@ public class DiaryController {
 
     }
 
-    @RequestMapping(value = "/deleteDiary", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/deleteDiary", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public String deleteDiary(@RequestParam(value = "id") String id) {
         ResultMsg resultMsg = diaryService.deleteDiary(Long.parseLong(id));
