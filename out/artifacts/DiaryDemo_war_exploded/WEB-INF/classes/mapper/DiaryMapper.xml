@@ -29,12 +29,12 @@
     <select id="selectDiaries" resultType="com.demo.server.bean.Diary">
         SELECT * FROM diary
         WHERE isDeleted = FALSE and eventTime &lt; #{timeCursor}
-        ORDER BY eventTime DESC, updateTime DESC LIMIT #{size}
+        ORDER BY eventTime DESC LIMIT #{size}
     </select>
 
     <select id="selectAllDiaries" resultType="com.demo.server.bean.Diary">
         SELECT * FROM diary
         WHERE isDeleted = FALSE
-        ORDER BY eventTime DESC, updateTime
+        ORDER BY eventTime DESC
     </select>
 </mapper>
