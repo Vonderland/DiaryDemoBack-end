@@ -6,6 +6,7 @@ import com.demo.server.dao.DiaryDao;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,12 +26,15 @@ public class DiaryService {
         } else {
             try {
                 int rowCount = diaryDao.insertDiary(diary);
+                System.out.println("rowCount = " + rowCount);
                 if (rowCount == 0) {
                     resultMsg.setCode(102);
                 } else {
                     resultMsg.setCode(100);
                     resultMsg.setSize(rowCount);
-                    resultMsg.setData(diary);
+                    List<Diary> diaryList = new ArrayList<Diary>();
+                    diaryList.add(diary);
+                    resultMsg.setData(diaryList);
                 }
             } catch (Exception e) {
                 System.out.println("addDiary " + Arrays.toString(e.getStackTrace()));
@@ -53,7 +57,9 @@ public class DiaryService {
                 } else {
                     resultMsg.setCode(100);
                     resultMsg.setSize(1);
-                    resultMsg.setData(diary);
+                    List<Diary> diaryList = new ArrayList<Diary>();
+                    diaryList.add(diary);
+                    resultMsg.setData(diaryList);
                 }
             } catch (Exception e) {
                 System.out.println("updateDiary " + Arrays.toString(e.getStackTrace()));
