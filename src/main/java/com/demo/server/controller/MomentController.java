@@ -34,7 +34,7 @@ public class MomentController {
 
     @RequestMapping(value = "/moment", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String getMoment(@RequestParam(value = "size", required = false, defaultValue = "3") String size,
+    public String getMoment(@RequestParam(value = "size", required = false, defaultValue = "20") String size,
                              @RequestParam(value = "timeCursor", required = false, defaultValue = "-1") String timeCursor) {
         long cursor = Long.parseLong(timeCursor);
         if (cursor < 0) {
