@@ -36,4 +36,9 @@
         WHERE isDeleted = FALSE
         ORDER BY eventTime DESC, updateTime
     </select>
+
+    <select id="selectMomentByID" resultType="com.demo.server.bean.Moment">
+        SELECT * FROM moment
+        WHERE id = #{id}
+    </select>
 </mapper>

@@ -80,6 +80,7 @@ public class DiaryController {
                               @RequestParam(value = "description") String description,
                               @RequestParam(value = "picture", required = false) CommonsMultipartFile file,
                               @RequestParam(value = "eventTime") String eventTime,
+                              @RequestParam(value = "pictureChanged") String pictureChanged,//0：没改变，1：改变
                               HttpServletRequest request) {
         ResultMsg resultMsg;
         Diary diary;
@@ -93,7 +94,12 @@ public class DiaryController {
             return gson.toJson(resultMsg);
         }
         diary.setId(Long.parseLong(id));
-        resultMsg = diaryService.updateDiary(diary, Long.parseLong(id));
+        if (Integer.parseInt(pictureChanged) == 0 ){
+            resultMsg = diaryService.updateDiaryNotChangePic(diary, Long.parseLong(id));
+
+        } else {
+            resultMsg = diaryService.updateDiary(diary, Long.parseLong(id));
+        }
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
 

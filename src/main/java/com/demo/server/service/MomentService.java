@@ -58,7 +58,7 @@ public class MomentService {
                     resultMsg.setCode(100);
                     resultMsg.setSize(1);
                     List<Moment> momentList = new ArrayList<Moment>();
-                    momentList.add(moment);
+                    momentList.add(momentDao.selectMomentByID(id));
                     resultMsg.setData(momentList);
                 }
             } catch (Exception e) {

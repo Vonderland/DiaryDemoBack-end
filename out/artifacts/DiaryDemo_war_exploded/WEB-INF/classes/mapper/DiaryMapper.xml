@@ -20,6 +20,15 @@
         WHERE id = #{id}
     </update>
 
+    <update id="updateDiaryNotChangePic">
+        UPDATE diary SET
+        title = #{diary.title},
+        description = #{diary.description},
+        eventTime = #{diary.eventTime},
+        updateTime = #{diary.updateTime}
+        WHERE id = #{id}
+    </update>
+
     <update id="deleteDiary">
         UPDATE diary SET
         isDeleted = TRUE
@@ -29,12 +38,17 @@
     <select id="selectDiaries" resultType="com.demo.server.bean.Diary">
         SELECT * FROM diary
         WHERE isDeleted = FALSE and eventTime &lt; #{timeCursor}
-        ORDER BY eventTime DESC LIMIT #{size}
+        ORDER BY eventTime DESC, updateTime DESC LIMIT #{size}
     </select>
 
     <select id="selectAllDiaries" resultType="com.demo.server.bean.Diary">
         SELECT * FROM diary
         WHERE isDeleted = FALSE
-        ORDER BY eventTime DESC
+        ORDER BY eventTime DESC, updateTime
+    </select>
+
+    <select id="selectDiaryByID" resultType="com.demo.server.bean.Diary">
+        SELECT * FROM diary
+        WHERE id = #{id}
     </select>
 </mapper>

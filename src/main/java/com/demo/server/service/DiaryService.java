@@ -58,7 +58,32 @@ public class DiaryService {
                     resultMsg.setCode(100);
                     resultMsg.setSize(1);
                     List<Diary> diaryList = new ArrayList<Diary>();
-                    diaryList.add(diary);
+                    diaryList.add(diaryDao.selectDiaryByID(id));
+                    resultMsg.setData(diaryList);
+                }
+            } catch (Exception e) {
+                System.out.println("updateDiary " + Arrays.toString(e.getStackTrace()));
+                resultMsg.setCode(103);
+            }
+        }
+        return resultMsg;
+    }
+
+    public ResultMsg updateDiaryNotChangePic(Diary diary, long id) {
+        ResultMsg resultMsg = new ResultMsg();
+        if (diary == null) {
+            resultMsg.setCode(101);
+            resultMsg.setMessage("diary is null");
+        } else {
+            try {
+                int rowCount = diaryDao.updateDiaryNotChangePic(diary, id);
+                if (rowCount == 0) {
+                    resultMsg.setCode(102);
+                } else {
+                    resultMsg.setCode(100);
+                    resultMsg.setSize(1);
+                    List<Diary> diaryList = new ArrayList<Diary>();
+                    diaryList.add(diaryDao.selectDiaryByID(id));
                     resultMsg.setData(diaryList);
                 }
             } catch (Exception e) {

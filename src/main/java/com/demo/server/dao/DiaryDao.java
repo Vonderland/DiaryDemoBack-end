@@ -13,7 +13,9 @@ import java.util.List;
 public interface DiaryDao {
     int insertDiary(Diary diary);
     int updateDiary(@Param("diary") Diary diary, @Param("id") long id);
+    int updateDiaryNotChangePic(@Param("diary") Diary diary, @Param("id") long id);
     int deleteDiary(@Param("id") long id);
+    Diary selectDiaryByID(@Param("id") long id);
     List<Diary> selectDiaries(@Param("size") int size, @Param("timeCursor") long timeCursor);
     List<Diary> selectAllDiaries();
 }

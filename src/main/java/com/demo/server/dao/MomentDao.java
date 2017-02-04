@@ -14,6 +14,7 @@ public interface MomentDao {
     int insertMoment(Moment moment);
     int updateMoment(@Param("moment") Moment moment, @Param("id") long id);
     int deleteMoment(@Param("id") long id);
+    Moment selectMomentByID(@Param("id") long id);
     List<Moment> selectMoment(@Param("size") int size, @Param("timeCursor") long timeCursor);
     List<Moment> selectAllMoment();
 }
