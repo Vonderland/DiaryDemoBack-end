@@ -44,7 +44,7 @@
     <select id="selectAllDiaries" resultType="com.demo.server.bean.Diary">
         SELECT * FROM diary
         WHERE isDeleted = FALSE
-        ORDER BY eventTime DESC, updateTime
+        ORDER BY eventTime DESC, updateTime DESC
     </select>
 
     <select id="selectDiaryByID" resultType="com.demo.server.bean.Diary">
