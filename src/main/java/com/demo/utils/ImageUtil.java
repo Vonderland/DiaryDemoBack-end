@@ -8,7 +8,7 @@ import java.io.File;
 /**
  * Created by Vonderland on 2017/1/30.
  */
-public class ImageUtils {
+public class ImageUtil {
     private static final String IMAGE_PATH = "files/image/";
     public static String uploadDiaryImage(CommonsMultipartFile file, HttpServletRequest request) throws Exception {
         String path = IMAGE_PATH + "diaryImage/";

@@ -189,7 +189,19 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.0</version>
+        </dependency>
     </dependencies>
+
+
+    <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt</artifactId>
+        <version>0.7.0</version>
+    </dependency>
 
     <!--注意这项配置，加上才能打包空文件夹！-->
     <plugin>

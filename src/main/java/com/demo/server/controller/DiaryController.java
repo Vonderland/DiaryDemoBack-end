@@ -3,18 +3,24 @@ package com.demo.server.controller;
 import com.demo.server.bean.Diary;
 import com.demo.server.bean.ResultMsg;
 import com.demo.server.service.DiaryService;
-import com.demo.utils.ImageUtils;
+import com.demo.utils.CipherUtil;
+import com.demo.utils.ImageUtil;
+import com.demo.utils.TokenUtil;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Properties;
 
 /**
  * Created by Vonderland on 2017/1/29.
@@ -26,6 +32,56 @@ public class DiaryController {
     @Autowired
     public DiaryController(DiaryService diaryService) {
         this.diaryService = diaryService;
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public String test() {
+        return TokenUtil.getUidFromToken(TokenUtil.generateToken(123)) + "";
+    }
+    @RequestMapping(value = "/forgetPassword", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public String forgetPassword() {
+        String result;
+        Properties props = new Properties();
+        // 开启debug调试
+        props.setProperty("mail.debug", "true");
+        // 发送服务器需要身份验证
+        props.setProperty("mail.smtp.auth", "true");
+        // 设置邮件服务器主机名
+        props.setProperty("mail.host", "smtp.163.com");
+        // 发送邮件协议名称
+        props.setProperty("mail.transport.protocol", "smtp");
+
+        // 设置环境信息
+        Session session = Session.getInstance(props);
+
+        try {
+            // 创建邮件对象
+            Message msg = new MimeMessage(session);
+            msg.setSubject("重置密码");
+            // 设置邮件内容
+            String randomPassWord;
+            for (int i = 0; i < 6; i ++) {
+
+            }
+            msg.setText("您的密码已被重置为");
+            // 设置发件人
+            msg.setFrom(new InternetAddress("us_diary_service@163.com"));
+
+            Transport transport = session.getTransport();
+            // 连接邮件服务器
+            transport.connect("us_diary_service", "87569530imayday");
+            // 发送邮件
+            transport.sendMessage(msg, new Address[] {new InternetAddress("")});
+            // 关闭连接
+            transport.close();
+            result = "success";
+        } catch (Exception e) {
+            System.out.println(e);
+            result = "failure";
+        }
+        return result;
     }
 
     @RequestMapping(value = "/allDiaries", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -121,7 +177,7 @@ public class DiaryController {
         diary.setEventTime(Long.parseLong(eventTime));
 
         if (file != null) {
-            String path = ImageUtils.uploadDiaryImage(file, request);
+            String path = ImageUtil.uploadDiaryImage(file, request);
             diary.setUrl(path);
         }
 

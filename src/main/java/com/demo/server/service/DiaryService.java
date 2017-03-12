@@ -44,7 +44,7 @@ public class DiaryService {
         return resultMsg;
     }
 
-    public ResultMsg updateDiary(Diary diary, long id) {
+    public ResultMsg  updateDiary(Diary diary, long id) {
         ResultMsg resultMsg = new ResultMsg();
         if (diary == null) {
             resultMsg.setCode(101);
