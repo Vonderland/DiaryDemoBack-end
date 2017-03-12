@@ -31,7 +31,7 @@ public class AccountController {
                            @RequestParam(value = "password") String encodedPassword,
                            @RequestParam(value = "nickName") String nickName,
                            @RequestParam(value = "gender") boolean gender,
-                           @RequestParam(value = "picture", required = false) CommonsMultipartFile file,
+                           @RequestParam(value = "avatar", required = false) CommonsMultipartFile file,
                            HttpServletRequest request) {
         ResultMsg resultMsg;
         User user = new User();

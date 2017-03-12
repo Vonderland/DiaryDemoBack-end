@@ -26,7 +26,7 @@ public class ProfileController {
 
     @RequestMapping(value = "/userProfile", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String userProfile(@RequestHeader("Authorization") String token) {
+    public String userProfile(@RequestHeader(value = "Authorization", required = false) String token) {
         ResultMsg resultMsg;
         resultMsg = profileService.getUser(token);
         Gson gson = new Gson();
@@ -35,7 +35,7 @@ public class ProfileController {
 
     @RequestMapping(value = "/updateNickName", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String updateNickName(@RequestHeader("Authorization") String token,
+    public String updateNickName(@RequestHeader(value = "Authorization", required = false) String token,
                                  @RequestParam(value = "nickName") String nickName) {
         ResultMsg resultMsg;
         resultMsg = profileService.updateNickName(token, nickName);
@@ -45,7 +45,7 @@ public class ProfileController {
 
     @RequestMapping(value = "/updateAvatar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String updateAvatar(@RequestHeader("Authorization") String token,
+    public String updateAvatar(@RequestHeader(value = "Authorization", required = false) String token,
                                @RequestParam(value = "avatar", required = false) CommonsMultipartFile file,
                                HttpServletRequest request) {
         ResultMsg resultMsg;

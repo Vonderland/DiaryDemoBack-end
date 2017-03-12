@@ -23,8 +23,6 @@ public class ImageUtil {
         System.out.println(request.getServletContext().getRealPath("/") + path);
         // 暂时安排在一个固定的文件夹中存放
         file.transferTo(new File(request.getServletContext().getRealPath("/") + path));
-
-        System.out.println(request.getServletContext().getRealPath("/") + path);
         return path;
     }
 }
