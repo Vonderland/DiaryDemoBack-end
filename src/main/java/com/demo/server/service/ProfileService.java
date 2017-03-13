@@ -1,8 +1,10 @@
 package com.demo.server.service;
 
+import com.demo.server.bean.Authorization;
 import com.demo.server.bean.Profile;
 import com.demo.server.bean.ResultMsg;
 import com.demo.server.bean.User;
+import com.demo.server.dao.AuthDao;
 import com.demo.server.dao.UserDao;
 import com.demo.utils.TokenUtil;
 import org.springframework.stereotype.Service;
@@ -16,13 +18,15 @@ import javax.annotation.Resource;
 public class ProfileService {
     @Resource
     private UserDao userDao;
+    @Resource
+    private AuthDao authDao;
 
     public ResultMsg getUser(String token) {
         ResultMsg resultMsg = new ResultMsg();
-        if (token == null) {
-            resultMsg.setCode(108);
-            return  resultMsg;
+        if (!checkTokenInvalidation(token, resultMsg)) {
+            return resultMsg;
         }
+
         long uid = TokenUtil.getUidFromToken(token);
         User user = userDao.selectUserByUid(uid);
         if (user == null) {
@@ -37,10 +41,10 @@ public class ProfileService {
 
     public ResultMsg updateAvatar(String token, String avatar) {
         ResultMsg resultMsg = new ResultMsg();
-        if (token == null) {
-            resultMsg.setCode(108);
+        if (!checkTokenInvalidation(token, resultMsg)) {
             return resultMsg;
         }
+
         long uid = TokenUtil.getUidFromToken(token);
         User user = userDao.selectUserByUid(uid);
         if (user == null) {
@@ -61,11 +65,19 @@ public class ProfileService {
 
     public ResultMsg updateNickName(String token, String nickName) {
         ResultMsg resultMsg = new ResultMsg();
-        if (token == null) {
-            resultMsg.setCode(108);
+        if (!checkTokenInvalidation(token, resultMsg)) {
             return resultMsg;
         }
+
         long uid = TokenUtil.getUidFromToken(token);
+        Authorization authorization = authDao.selectAuthByUid(uid);
+        if (authorization == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } else if (!token.equals(authorization.getToken())) {
+            resultMsg.setCode(105);
+            return resultMsg;
+        }
         User user = userDao.selectUserByUid(uid);
         if (user == null) {
             resultMsg.setCode(107);
@@ -81,5 +93,22 @@ public class ProfileService {
             }
         }
         return resultMsg;
+    }
+
+    private boolean checkTokenInvalidation(String token, ResultMsg resultMsg) {
+        if (token == null) {
+            resultMsg.setCode(108);
+            return false;
+        }
+        long uid = TokenUtil.getUidFromToken(token);
+        Authorization authorization = authDao.selectAuthByUid(uid);
+        if (authorization == null) {
+            resultMsg.setCode(107);
+            return false;
+        } else if (!token.equals(authorization.getToken())) {
+            resultMsg.setCode(105);
+            return false;
+        }
+        return true;
     }
 }

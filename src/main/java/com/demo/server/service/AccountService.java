@@ -105,9 +105,8 @@ public class AccountService {
 
     public ResultMsg resetPassword(String token, String password, String newPassword) {
         ResultMsg resultMsg = new ResultMsg();
-        if (token == null) {
-            resultMsg.setCode(108);
-            return  resultMsg;
+        if (!checkTokenInvalidation(token, resultMsg)) {
+            return resultMsg;
         }
         long uid = TokenUtil.getUidFromToken(token);
         User user = userDao.selectUserByUid(uid);
@@ -136,5 +135,22 @@ public class AccountService {
             resultMsg.setCode(110);
         }
         return resultMsg;
+    }
+
+    private boolean checkTokenInvalidation(String token, ResultMsg resultMsg) {
+        if (token == null) {
+            resultMsg.setCode(108);
+            return false;
+        }
+        long uid = TokenUtil.getUidFromToken(token);
+        Authorization authorization = authDao.selectAuthByUid(uid);
+        if (authorization == null) {
+            resultMsg.setCode(107);
+            return false;
+        } else if (!token.equals(authorization.getToken())) {
+            resultMsg.setCode(105);
+            return false;
+        }
+        return true;
     }
 }
