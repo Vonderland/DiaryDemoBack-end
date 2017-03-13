@@ -52,7 +52,7 @@ public class ProfileController {
         String avatar = "";
         if (file != null) {
             try {
-                avatar = ImageUtil.uploadDiaryImage(file, request);
+                avatar = ImageUtil.uploadAvatarImage(file, request);
             } catch (Exception ex) {
                 resultMsg = new ResultMsg();
                 resultMsg.setCode(104);

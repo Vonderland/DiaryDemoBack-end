@@ -37,7 +37,7 @@ public class AccountController {
         User user = new User();
         if (file != null) {
             try {
-                String avatar = ImageUtil.uploadDiaryImage(file, request);
+                String avatar = ImageUtil.uploadAvatarImage(file, request);
                 user.setAvatar(avatar);
             } catch (Exception ex) {
                 resultMsg = new ResultMsg();

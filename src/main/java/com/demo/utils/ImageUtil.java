@@ -25,4 +25,20 @@ public class ImageUtil {
         file.transferTo(new File(request.getServletContext().getRealPath("/") + path));
         return path;
     }
+
+    public static String uploadAvatarImage(CommonsMultipartFile file, HttpServletRequest request) throws Exception {
+        String path = IMAGE_PATH + "avatarImage/";
+        String contentType = file.getContentType();
+        String[] type = contentType.split("/");
+        if (!"image".equals(type[0])) {
+            throw new Exception("wrong file type");
+        }
+        // 获得后缀名
+        String suffixName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
+        path = path + System.currentTimeMillis() + suffixName;
+        System.out.println(request.getServletContext().getRealPath("/") + path);
+        // 暂时安排在一个固定的文件夹中存放
+        file.transferTo(new File(request.getServletContext().getRealPath("/") + path));
+        return path;
+    }
 }
