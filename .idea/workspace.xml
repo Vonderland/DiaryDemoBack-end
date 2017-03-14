@@ -7,18 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aecfc019-aeb0-4c2c-b079-388d3cf5b4cb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/DiaryDemo_war_exploded/WEB-INF/classes/com/demo/server/controller/DiaryController.class" afterPath="$PROJECT_DIR$/out/artifacts/DiaryDemo_war_exploded/WEB-INF/classes/com/demo/server/controller/DiaryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/demo/server/controller/AccountController.class" afterPath="$PROJECT_DIR$/target/classes/com/demo/server/controller/AccountController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/demo/server/controller/DiaryController.class" afterPath="$PROJECT_DIR$/target/classes/com/demo/server/controller/DiaryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/demo/server/service/AccountService.class" afterPath="$PROJECT_DIR$/target/classes/com/demo/server/service/AccountService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/demo/utils/CipherUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/demo/utils/CipherUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/demo/utils/TokenUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/demo/utils/TokenUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/demo/server/controller/AccountController.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/server/controller/AccountController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/demo/server/controller/DiaryController.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/server/controller/DiaryController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/demo/server/service/AccountService.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/server/service/AccountService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/demo/utils/CipherUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/utils/CipherUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/demo/utils/TokenUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/utils/TokenUtil.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -63,17 +52,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccountController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AccountController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/controller/AccountController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="103" column="43" lean-forward="true" selection-start-line="103" selection-start-column="43" selection-end-line="103" selection-end-column="43" />
+            <state relative-caret-position="300">
+              <caret line="124" column="35" lean-forward="true" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccountService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AccountService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/service/AccountService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-664">
@@ -172,9 +161,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/demo/server/service/ProfileService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/demo/server/controller/DiaryController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/demo/utils/TokenUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/demo/server/controller/AccountController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/demo/utils/CipherUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/demo/server/service/AccountService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/demo/server/controller/AccountController.java" />
       </list>
     </option>
   </component>
@@ -1177,12 +1166,12 @@
       <workItem from="1489056674236" duration="2932000" />
       <workItem from="1489156546800" duration="41972000" />
       <workItem from="1489370027766" duration="8708000" />
-      <workItem from="1489455103183" duration="6554000" />
+      <workItem from="1489455103183" duration="6807000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142318000" />
+    <option name="totallyTimeSpent" value="142571000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1710,14 +1699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/controller/AccountController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="103" column="43" lean-forward="true" selection-start-line="103" selection-start-column="43" selection-end-line="103" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/utils/CipherUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -1735,6 +1716,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/controller/AccountController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="124" column="35" lean-forward="true" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>

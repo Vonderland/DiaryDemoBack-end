@@ -127,7 +127,7 @@ public class AccountController {
             return gson.toJson(resultMsg);
         }
 
-        resultMsg = accountService.forgetPassword(encodedEmail);
+        resultMsg = accountService.forgetPassword(email);
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
     }
