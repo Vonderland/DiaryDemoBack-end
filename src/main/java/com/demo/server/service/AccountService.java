@@ -203,7 +203,6 @@ public class AccountService {
                     // 关闭连接
                     transport.close();
                     resultMsg.setCode(100);
-                    resultMsg.setData(auth);
                 } catch (Exception e) {
                     System.out.println(e.toString());
                     resultMsg.setCode(111);
