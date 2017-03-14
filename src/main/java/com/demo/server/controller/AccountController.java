@@ -5,6 +5,7 @@ import com.demo.server.bean.User;
 import com.demo.server.service.AccountService;
 import com.demo.utils.CipherUtil;
 import com.demo.utils.ImageUtil;
+import com.demo.utils.TokenUtil;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,7 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Properties;
 
 /**
  * Created by Vonderland on 2017/3/11.
@@ -101,6 +109,25 @@ public class AccountController {
             return gson.toJson(resultMsg);
         }
         resultMsg = accountService.resetPassword(token, password, newPassword);
+        Gson gson = new Gson();
+        return gson.toJson(resultMsg);
+    }
+
+    @RequestMapping(value = "/forgetPassword", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public String forgetPassword(@RequestParam(value = "email") String encodedEmail) {
+        ResultMsg resultMsg;
+        String email;
+        try {
+            email = CipherUtil.decodeData(encodedEmail);
+        } catch (Exception ex) {
+            resultMsg = new ResultMsg();
+            resultMsg.setCode(109);
+            Gson gson = new Gson();
+            return gson.toJson(resultMsg);
+        }
+
+        resultMsg = accountService.forgetPassword(encodedEmail);
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
     }

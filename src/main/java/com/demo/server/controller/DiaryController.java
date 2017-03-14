@@ -34,56 +34,6 @@ public class DiaryController {
         this.diaryService = diaryService;
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ResponseBody
-    public String test() {
-        return TokenUtil.getUidFromToken(TokenUtil.generateToken(123)) + "";
-    }
-    @RequestMapping(value = "/forgetPassword", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @ResponseBody
-    public String forgetPassword() {
-        String result;
-        Properties props = new Properties();
-        // 开启debug调试
-        props.setProperty("mail.debug", "true");
-        // 发送服务器需要身份验证
-        props.setProperty("mail.smtp.auth", "true");
-        // 设置邮件服务器主机名
-        props.setProperty("mail.host", "smtp.163.com");
-        // 发送邮件协议名称
-        props.setProperty("mail.transport.protocol", "smtp");
-
-        // 设置环境信息
-        Session session = Session.getInstance(props);
-
-        try {
-            // 创建邮件对象
-            Message msg = new MimeMessage(session);
-            msg.setSubject("重置密码");
-            // 设置邮件内容
-            String randomPassWord;
-            for (int i = 0; i < 6; i ++) {
-
-            }
-            msg.setText("您的密码已被重置为");
-            // 设置发件人
-            msg.setFrom(new InternetAddress("us_diary_service@163.com"));
-
-            Transport transport = session.getTransport();
-            // 连接邮件服务器
-            transport.connect("us_diary_service", "87569530imayday");
-            // 发送邮件
-            transport.sendMessage(msg, new Address[] {new InternetAddress("")});
-            // 关闭连接
-            transport.close();
-            result = "success";
-        } catch (Exception e) {
-            System.out.println(e);
-            result = "failure";
-        }
-        return result;
-    }
-
     @RequestMapping(value = "/allDiaries", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public String getAllDiaries() {
