@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.server.dao.CoupleDao">
+    <insert id="insertCouple" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO couple(loverAId, loverBId, isBroken, togetherTime)
+        VALUES (#{loverAId}, #{loverBId}, false, #{togetherTime})
+    </insert>
+
+    <update id="updateBreakUpState">
+        UPDATE couple SET
+        isBroken = #{isBroken}
+        WHERE id = coupleId
+    </update>
+
+    <select id="selectCoupleByLover" resultType="com.demo.server.bean.Couple">
+        SELECT * FROM couple
+        WHERE (loverAId = #{loverId} or loverBId = #{loverId}) and isBroken = false
+        ORDER BY id DESC LIMIT 1
+    </select>
+
+    <select id="selectCoupleByLovers" resultType="com.demo.server.bean.Couple">
+        SELECT * FROM couple
+        WHERE ((loverAId = #{loverAId} and loverBId = #{loverBId}) or (loverAId = #{loverBId} and loverBId = #{loverAId}))
+         and isBroken = false
+        ORDER BY id DESC LIMIT 1
+    </select>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.server.dao.BlackHouseDao">
+    <insert id="insertBlackHouse" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO blackhouse(fromId, toId, isReleased)
+        VALUES (#{fromId}, #{toId}, false)
+    </insert>
+
+    <update id="updateBlackHouseState">
+        UPDATE blackhouse SET
+        isReleased = #{isBlack}
+        WHERE fromId = #{fromId} and toId = #{toId}
+    </update>
+
+    <select id="selectBlackHouseById" resultType="com.demo.server.bean.BlackHouse">
+        SELECT * FROM blackhouse
+        WHERE fromId = #{fromId} and toId = #{toId}
+        ORDER BY id DESC LIMIT 1
+    </select>
+</mapper>
