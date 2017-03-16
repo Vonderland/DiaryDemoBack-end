@@ -155,8 +155,8 @@ public class ProfileService {
                     } else {
                         profile.setBlack(true);
                     }
+                    resultMsg.setData(profile);
                 }
-                resultMsg.setData(lover);
                 resultMsg.setCode(100);
             }
         }
