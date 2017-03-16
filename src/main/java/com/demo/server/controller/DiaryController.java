@@ -34,6 +34,14 @@ public class DiaryController {
         this.diaryService = diaryService;
     }
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public String test() {
+        ResultMsg resultMsg = new ResultMsg();
+        resultMsg.setData(true);
+        Gson gson = new Gson();
+        return gson.toJson(resultMsg);
+    }
     @RequestMapping(value = "/allDiaries", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public String getAllDiaries() {

@@ -1,6 +1,7 @@
 package com.demo.server.dao;
 
 import com.demo.server.bean.BlackHouse;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface BlackHouseDao {
-    BlackHouse selectBlackHouseById(long fromId, long toId);
+    BlackHouse selectBlackHouseById(@Param("fromId")long fromId, @Param("toId")long toId);
     int insertBlackHouse(BlackHouse blackHouse);
-    int updateBlackHouseState(long fromId, long toId, boolean isBlack);
+    int updateBlackHouseState(@Param("fromId")long fromId, @Param("toId")long toId, @Param("isBlack")boolean isBlack);
 }

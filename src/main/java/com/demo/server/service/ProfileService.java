@@ -1,10 +1,9 @@
 package com.demo.server.service;
 
-import com.demo.server.bean.Authorization;
-import com.demo.server.bean.Profile;
-import com.demo.server.bean.ResultMsg;
-import com.demo.server.bean.User;
+import com.demo.server.bean.*;
 import com.demo.server.dao.AuthDao;
+import com.demo.server.dao.BlackHouseDao;
+import com.demo.server.dao.CoupleDao;
 import com.demo.server.dao.UserDao;
 import com.demo.utils.TokenUtil;
 import org.springframework.stereotype.Service;
@@ -20,6 +19,10 @@ public class ProfileService {
     private UserDao userDao;
     @Resource
     private AuthDao authDao;
+    @Resource
+    private BlackHouseDao blackHouseDao;
+    @Resource
+    private CoupleDao coupleDao;
 
     public ResultMsg getUser(String token) {
         ResultMsg resultMsg = new ResultMsg();
@@ -34,6 +37,19 @@ public class ProfileService {
         } else {
             resultMsg.setCode(100);
             Profile profile = new Profile(user);
+            Couple couple = coupleDao.selectCoupleByLover(uid);
+            if (couple == null) {
+                profile.setLoverId(-1);
+            } else {
+                long loverId = couple.getLoverAId() == uid ? couple.getLoverBId() : couple.getLoverAId();
+                profile.setLoverId(loverId);
+                BlackHouse blackHouse = blackHouseDao.selectBlackHouseById(loverId, uid);
+                if (blackHouse == null) {
+                    profile.setBlack(false);
+                } else {
+                    profile.setBlack(true);
+                }
+            }
             resultMsg.setData(profile);
         }
         return resultMsg;

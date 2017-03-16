@@ -1,9 +1,6 @@
 package com.demo.server.service;
 
-import com.demo.server.bean.Authorization;
-import com.demo.server.bean.Request;
-import com.demo.server.bean.ResultMsg;
-import com.demo.server.bean.User;
+import com.demo.server.bean.*;
 import com.demo.server.dao.*;
 import com.demo.utils.TokenUtil;
 import org.springframework.stereotype.Service;
@@ -25,24 +22,52 @@ public class CoupleService {
     private AuthDao authDao;
     @Resource
     private UserDao userDao;
+    @Resource
+    private DiaryDao diaryDao;
+    @Resource
+    private MomentDao momentDao;
 
     public ResultMsg sendRequest(String token, String email) {
         ResultMsg resultMsg = new ResultMsg();
         if (!checkTokenInvalidation(token, resultMsg)) {
             return resultMsg;
-        }
+        }// token 不合法
         long uid = TokenUtil.getUidFromToken(token);
         User fromUser = userDao.selectUserByUid(uid);
         if (fromUser == null) {
             resultMsg.setCode(107);
             return resultMsg;
-        }
+        } // 用户不存在
+        Couple fromCouple = coupleDao.selectCoupleByLover(uid);
+        if (fromCouple != null) {
+            resultMsg.setCode(115);
+            return resultMsg;
+        } // 用户自己已经有另一半
         User toUser = userDao.selectUserByEmail(email);
         if (toUser == null) {
             resultMsg.setCode(112);
             return resultMsg;
+        } // 对方邮箱未注册
+        long loverId = toUser.getUid();
+        Couple toCouple = coupleDao.selectCoupleByLover(loverId);
+        if (toCouple != null) {
+            resultMsg.setCode(113);
+            return resultMsg;
+        } // 对方已经有另一半
+        Request existedRequest = requestDao.selectRequestByIds(uid, loverId);
+        if (existedRequest != null) {
+            resultMsg.setCode(114);
+            return resultMsg;
+        } // 已经发送过请求，等待对方处理
+        Request request = new Request();
+        request.setFromId(uid);
+        request.setToId(loverId);
+        int rowCount = requestDao.insertRequest(request);
+        if (rowCount == 1) {
+            resultMsg.setCode(100);
+        } else {
+            resultMsg.setCode(102);
         }
-
         return resultMsg;
     }
 
@@ -50,6 +75,39 @@ public class CoupleService {
         ResultMsg resultMsg = new ResultMsg();
         if (!checkTokenInvalidation(token, resultMsg)) {
             return resultMsg;
+        }// token 不合法
+        long uid = TokenUtil.getUidFromToken(token);
+        User user = userDao.selectUserByUid(uid);
+        if (user == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } // 用户不存在
+        Couple couple = coupleDao.selectCoupleByLover(uid);
+        if (couple != null) {
+            resultMsg.setCode(115);
+            return resultMsg;
+        } // 用户自己已经有另一半
+        Request request = requestDao.selectRequestById(id);
+        long fromId = request.getFromId();
+        Couple fromCouple = coupleDao.selectCoupleByLover(fromId);
+        if (fromCouple != null) {
+            resultMsg.setCode(113);
+            return resultMsg;
+        } // 对方已经有另一半
+        int rowCount = requestDao.acceptRequest(id);
+        if (rowCount == 1) {
+            Couple newCouple = new Couple();
+            newCouple.setLoverAId(uid);
+            newCouple.setLoverBId(fromId);
+            newCouple.setTogetherTime(System.currentTimeMillis());
+            int count = coupleDao.insertCouple(newCouple);
+            if (count == 1) {
+                resultMsg.setCode(100);
+            } else {
+                resultMsg.setCode(102);
+            }
+        } else {
+            resultMsg.setCode(102);
         }
         return resultMsg;
     }
@@ -58,6 +116,18 @@ public class CoupleService {
         ResultMsg resultMsg = new ResultMsg();
         if (!checkTokenInvalidation(token, resultMsg)) {
             return resultMsg;
+        }// token 不合法
+        long uid = TokenUtil.getUidFromToken(token);
+        User user = userDao.selectUserByUid(uid);
+        if (user == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } // 用户不存在
+        int rowCount = requestDao.rejectRequest(id);
+        if (rowCount == 1) {
+            resultMsg.setCode(100);
+        } else {
+            resultMsg.setCode(102);
         }
         return resultMsg;
     }
@@ -67,6 +137,18 @@ public class CoupleService {
         if (!checkTokenInvalidation(token, resultMsg)) {
             return resultMsg;
         }
+        long uid = TokenUtil.getUidFromToken(token);
+        User user = userDao.selectUserByUid(uid);
+        if (user == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } // 用户不存在
+        Request request = requestDao.selectRequestByToId(uid);
+        resultMsg.setCode(100);
+        if (request != null) {
+            resultMsg.setSize(1);
+            resultMsg.setData(request);
+        }
         return resultMsg;
     }
 
@@ -74,6 +156,20 @@ public class CoupleService {
         ResultMsg resultMsg = new ResultMsg();
         if (!checkTokenInvalidation(token, resultMsg)) {
             return resultMsg;
+        }
+        long uid = TokenUtil.getUidFromToken(token);
+        User user = userDao.selectUserByUid(uid);
+        if (user == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } // 用户不存在
+
+        Couple couple = coupleDao.selectCoupleByLover(uid);
+        resultMsg.setCode(100);
+        if (couple == null) {
+            resultMsg.setData(false);
+        } else {
+            resultMsg.setData(true);
         }
         return resultMsg;
     }
@@ -83,6 +179,26 @@ public class CoupleService {
         if (!checkTokenInvalidation(token, resultMsg)) {
             return resultMsg;
         }
+        long uid = TokenUtil.getUidFromToken(token);
+        User user = userDao.selectUserByUid(uid);
+        if (user == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } // 用户不存在
+
+        Couple couple = coupleDao.selectCoupleByLover(uid);
+        if (couple == null) {
+            resultMsg.setCode(116);
+            return resultMsg;
+        }
+        long loverId = couple.getLoverAId() == uid ? couple.getLoverBId() : couple.getLoverAId();
+        BlackHouse blackHouse = blackHouseDao.selectBlackHouseById(loverId, uid);
+        resultMsg.setCode(100);
+        if (blackHouse == null) {
+            resultMsg.setData(false);
+        } else {
+            resultMsg.setData(true);
+        }
         return resultMsg;
     }
 
@@ -91,6 +207,37 @@ public class CoupleService {
         if (!checkTokenInvalidation(token, resultMsg)) {
             return resultMsg;
         }
+        long uid = TokenUtil.getUidFromToken(token);
+        User user = userDao.selectUserByUid(uid);
+        if (user == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } // 用户不存在
+        Couple couple = coupleDao.selectCoupleByLover(uid);
+        if (couple == null) {
+            resultMsg.setCode(116);
+            return resultMsg;
+        }
+        long loverId = couple.getLoverAId() == uid ? couple.getLoverBId() : couple.getLoverAId();
+        if (isBlack) {
+            BlackHouse existedBlackHouse = blackHouseDao.selectBlackHouseById(loverId, uid);
+            if (existedBlackHouse == null) {
+                BlackHouse blackHouse = new BlackHouse();
+                blackHouse.setFromId(uid);
+                blackHouse.setId(loverId);
+                int rowCount = blackHouseDao.insertBlackHouse(blackHouse);
+                if (rowCount == 0) {
+                    resultMsg.setCode(102);
+                } else {
+                    resultMsg.setCode(100);
+                }
+            } else {
+                resultMsg.setCode(117);// 对方已经先发制人关小黑屋
+            }
+        } else {
+            blackHouseDao.updateBlackHouseState(uid, loverId, false);
+            resultMsg.setCode(100);
+        }
         return resultMsg;
     }
 
@@ -98,6 +245,29 @@ public class CoupleService {
         ResultMsg resultMsg = new ResultMsg();
         if (!checkTokenInvalidation(token, resultMsg)) {
             return resultMsg;
+        }
+        long uid = TokenUtil.getUidFromToken(token);
+        User user = userDao.selectUserByUid(uid);
+        if (user == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } // 用户不存在
+        Couple couple = coupleDao.selectCoupleByLover(uid);
+        if (couple == null) {
+            resultMsg.setCode(116);
+            return resultMsg;
+        }// 已经分手了
+        long loverId = couple.getLoverAId() == uid ? couple.getLoverBId() : couple.getLoverAId();
+        int rowCount = coupleDao.breakUp(uid, loverId);
+        if (rowCount == 0) {
+            resultMsg.setCode(102);
+        } else {
+            diaryDao.deleteDiaryByUid(uid);
+            diaryDao.deleteDiaryByUid(loverId);
+            momentDao.deleteMomentByUid(uid);
+            momentDao.deleteMomentByUid(loverId);
+            blackHouseDao.updateBlackHouseState(uid, loverId, false);
+            blackHouseDao.updateBlackHouseState(loverId, uid, false);
         }
         return resultMsg;
     }

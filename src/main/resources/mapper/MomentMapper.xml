@@ -25,6 +25,12 @@
         WHERE id = #{id}
     </update>
 
+    <update id="deleteMomentByUid">
+        UPDATE moment SET
+        isDeleted = TRUE
+        WHERE uid = #{uid}
+    </update>
+
     <select id="selectMoment" resultType="com.demo.server.bean.Moment">
         SELECT * FROM moment
         WHERE isDeleted = FALSE and eventTime &lt; #{timeCursor}

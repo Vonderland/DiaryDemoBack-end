@@ -1,6 +1,7 @@
 package com.demo.server.dao;
 
 import com.demo.server.bean.Request;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,8 +10,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RequestDao {
     int insertRequest(Request request);
-    Request selectRequestByFromId(long fromId);
-    Request selectRequestByToId(long toId);
-    int acceptRequest(long id);
-    int rejectRequest(long id);
+    Request selectRequestByIds(@Param("fromId")long fromId, @Param("toId")long toId);
+    Request selectRequestByToId(@Param("toId")long toId);
+    int acceptRequest(@Param("id")long id);
+    int rejectRequest(@Param("id")long id);
+    Request selectRequestById(@Param("id")long id);
 }

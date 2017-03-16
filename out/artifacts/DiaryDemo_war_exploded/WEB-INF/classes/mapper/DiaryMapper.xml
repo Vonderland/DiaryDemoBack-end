@@ -35,6 +35,12 @@
         WHERE id = #{id}
     </update>
 
+    <update id="deleteDiaryByUid">
+        UPDATE diary SET
+        isDeleted = TRUE
+        WHERE uid = #{uid}
+    </update>
+
     <select id="selectDiaries" resultType="com.demo.server.bean.Diary">
         SELECT * FROM diary
         WHERE isDeleted = FALSE and eventTime &lt; #{timeCursor}

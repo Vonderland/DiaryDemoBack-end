@@ -5,12 +5,21 @@ package com.demo.server.bean;
  */
 public class Moment {
     private long id;
+    private long uid;
     private String title;
     private String location;
     private boolean isDeleted;
     private long eventTime;
     private long createTime;
     private long updateTime;
+
+    public long getUid() {
+        return uid;
+    }
+
+    public void setUid(long uid) {
+        this.uid = uid;
+    }
 
     public long getId() {
         return id;

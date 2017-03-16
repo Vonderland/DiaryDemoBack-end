@@ -7,13 +7,31 @@ import java.io.Serializable;
  */
 public class Diary implements Serializable {
     private long id;
+    private long uid;
     private String title;
     private String description;
     private String url;
     private boolean isDeleted;
+    private boolean isPrivate;
     private long eventTime;
     private long createTime;
     private long updateTime;
+
+    public long getUid() {
+        return uid;
+    }
+
+    public void setUid(long uid) {
+        this.uid = uid;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
 
     public long getId() {
         return id;

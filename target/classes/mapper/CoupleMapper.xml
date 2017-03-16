@@ -14,6 +14,12 @@
         WHERE id = coupleId
     </update>
 
+    <update id="breakUp">
+        UPDATE couple SET
+        isBroken = true
+        WHERE (loverAId = #{loverAId} and loverBId = #{loverBId}) or (loverAId = #{loverBId} and loverBId = #{loverAId})
+    </update>
+
     <select id="selectCoupleByLover" resultType="com.demo.server.bean.Couple">
         SELECT * FROM couple
         WHERE (loverAId = #{loverId} or loverBId = #{loverId}) and isBroken = false

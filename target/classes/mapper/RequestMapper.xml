@@ -20,15 +20,20 @@
         WHERE id = #{id}
     </update>
 
-    <select id="selectRequestByFromId" resultType="com.demo.server.bean.Request">
+    <select id="selectRequestByIds" resultType="com.demo.server.bean.Request">
         SELECT * FROM request
-        WHERE fromId = #{fromId}
+        WHERE fromId = #{fromId} and toId = #{toId} and isDenied = false and isOK = false
         ORDER BY id DESC LIMIT 1
     </select>
 
     <select id="selectRequestByToId" resultType="com.demo.server.bean.Request">
         SELECT * FROM request
-        WHERE toId = #{toId}
+        WHERE toId = #{toId} and isDenied = false and isOK = false
         ORDER BY id DESC LIMIT 1
+    </select>
+
+    <select id="selectRequestById" resultType="com.demo.server.bean.Request">
+        SELECT * FROM request
+        WHERE id = #{id}
     </select>
 </mapper>

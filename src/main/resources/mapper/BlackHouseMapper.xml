@@ -16,7 +16,7 @@
 
     <select id="selectBlackHouseById" resultType="com.demo.server.bean.BlackHouse">
         SELECT * FROM blackhouse
-        WHERE fromId = #{fromId} and toId = #{toId}
+        WHERE fromId = #{fromId} and toId = #{toId} and isReleased = false
         ORDER BY id DESC LIMIT 1
     </select>
 </mapper>

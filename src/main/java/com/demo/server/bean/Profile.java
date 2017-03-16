@@ -9,7 +9,7 @@ public class Profile {
     private String nickName;
     private boolean gender;
     private String avatar;
-    private long loverId = -1;
+    private long loverId;
     private boolean isBlack;
 
     public long getLoverId() {
