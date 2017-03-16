@@ -4,19 +4,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.demo.server.dao.RequestDao">
     <insert id="insertRequest" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO request(fromId, toId, isOK, isDenied, sendTime)
-        VALUES (#{fromId}, #{toId}, false, false, #{sendTime})
+        INSERT INTO request(fromId, toId, isOK, isDenied, sendTime, fromEmail, fromNickName)
+        VALUES (#{fromId}, #{toId}, false, false, #{sendTime}, #{fromEmail}, #{fromNickName})
     </insert>
 
     <update id="acceptRequest">
         UPDATE request SET
-        isOK = #{true}
+        isOK = true
         WHERE id = #{id}
     </update>
 
     <update id="rejectRequest">
         UPDATE request SET
-        isDenied = #{true}
+        isDenied = true
         WHERE id = #{id}
     </update>
 

@@ -38,6 +38,10 @@ public class CoupleService {
             resultMsg.setCode(107);
             return resultMsg;
         } // 用户不存在
+        if (fromUser.getEmail().equals(email)) {
+            resultMsg.setCode(118);
+            return resultMsg;
+        } // 不能自己给自己发
         Couple fromCouple = coupleDao.selectCoupleByLover(uid);
         if (fromCouple != null) {
             resultMsg.setCode(115);
@@ -61,6 +65,9 @@ public class CoupleService {
         } // 已经发送过请求，等待对方处理
         Request request = new Request();
         request.setFromId(uid);
+        request.setFromEmail(fromUser.getEmail());
+        request.setFromNickName(fromUser.getNickName());
+        request.setSendTime(System.currentTimeMillis());
         request.setToId(loverId);
         int rowCount = requestDao.insertRequest(request);
         if (rowCount == 1) {

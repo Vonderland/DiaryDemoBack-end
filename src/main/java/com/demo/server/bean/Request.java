@@ -10,6 +10,24 @@ public class Request {
     private boolean isOK;
     private boolean isDenied;
     private long sendTime;
+    private String fromEmail;
+    private String fromNickName;
+
+    public String getFromEmail() {
+        return fromEmail;
+    }
+
+    public void setFromEmail(String fromEmail) {
+        this.fromEmail = fromEmail;
+    }
+
+    public String getFromNickName() {
+        return fromNickName;
+    }
+
+    public void setFromNickName(String fromNickName) {
+        this.fromNickName = fromNickName;
+    }
 
     public long getId() {
         return id;
