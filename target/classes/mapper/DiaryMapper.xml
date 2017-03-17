@@ -25,7 +25,7 @@
         title = #{diary.title},
         description = #{diary.description},
         eventTime = #{diary.eventTime},
-        updateTime = #{diary.updateTime}
+        updateTime = #{diary.updateTime},
         isPrivate = #{diary.isPrivate}
         WHERE id = #{id}
     </update>

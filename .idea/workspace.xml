@@ -7,28 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aecfc019-aeb0-4c2c-b079-388d3cf5b4cb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/DiaryDemo_war_exploded/WEB-INF/classes/com/demo/server/controller/DiaryController.class" afterPath="$PROJECT_DIR$/out/artifacts/DiaryDemo_war_exploded/WEB-INF/classes/com/demo/server/controller/DiaryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/DiaryDemo_war_exploded/WEB-INF/classes/com/demo/server/dao/DiaryDao.class" afterPath="$PROJECT_DIR$/out/artifacts/DiaryDemo_war_exploded/WEB-INF/classes/com/demo/server/dao/DiaryDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/DiaryDemo_war_exploded/WEB-INF/classes/com/demo/server/service/DiaryService.class" afterPath="$PROJECT_DIR$/out/artifacts/DiaryDemo_war_exploded/WEB-INF/classes/com/demo/server/service/DiaryService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/demo/server/controller/DiaryController.class" afterPath="$PROJECT_DIR$/target/classes/com/demo/server/controller/DiaryController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/demo/server/controller/MomentController.class" afterPath="$PROJECT_DIR$/target/classes/com/demo/server/controller/MomentController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/demo/server/dao/DiaryDao.class" afterPath="$PROJECT_DIR$/target/classes/com/demo/server/dao/DiaryDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/demo/server/dao/MomentDao.class" afterPath="$PROJECT_DIR$/target/classes/com/demo/server/dao/MomentDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/demo/server/service/DiaryService.class" afterPath="$PROJECT_DIR$/target/classes/com/demo/server/service/DiaryService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/demo/server/service/MomentService.class" afterPath="$PROJECT_DIR$/target/classes/com/demo/server/service/MomentService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/demo/server/service/ProfileService.class" afterPath="$PROJECT_DIR$/target/classes/com/demo/server/service/ProfileService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/DiaryDemo_war_exploded/WEB-INF/classes/mapper/DiaryMapper.xml" afterPath="$PROJECT_DIR$/out/artifacts/DiaryDemo_war_exploded/WEB-INF/classes/mapper/DiaryMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/demo/server/controller/DiaryController.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/server/controller/DiaryController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/demo/server/controller/MomentController.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/server/controller/MomentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/demo/server/dao/DiaryDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/server/dao/DiaryDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/demo/server/dao/MomentDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/server/dao/MomentDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/demo/server/service/DiaryService.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/server/service/DiaryService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/demo/server/service/MomentService.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/server/service/MomentService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/DiaryMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/DiaryMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/MomentMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/MomentMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapper/DiaryMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mapper/DiaryMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapper/MomentMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mapper/MomentMapper.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -54,8 +33,28 @@
       <file leaf-file-name="DiaryService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/service/DiaryService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="27" column="32" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="27" selection-end-column="32" />
+            <state relative-caret-position="120">
+              <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DiaryController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/controller/DiaryController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InvocableHandlerMethod.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.0.RELEASE/spring-web-4.3.0.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -71,18 +70,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoupleDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/dao/CoupleDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CoupleService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/service/CoupleService.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -91,16 +78,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfileService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/service/ProfileService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="146" column="105" lean-forward="true" selection-start-line="142" selection-start-column="12" selection-end-line="146" selection-end-column="105" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -156,20 +133,20 @@
       <file leaf-file-name="DiaryMapper.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/DiaryMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1404">
-              <caret line="52" column="38" lean-forward="false" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
+            <state relative-caret-position="620">
+              <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
               <folding>
-                <marker date="1489732894071" expanded="true" signature="294:503" ph="INSERT INTO diary... " />
-                <marker date="1489732894071" expanded="true" signature="557:823" ph="UPDATE diary... " />
-                <marker date="1489732894071" expanded="true" signature="889:1126" ph="UPDATE diary... " />
-                <marker date="1489732894071" expanded="true" signature="1180:1246" ph="UPDATE diary... " />
-                <marker date="1489732894071" expanded="true" signature="1305:1373" ph="UPDATE diary... " />
-                <marker date="1489732894071" expanded="true" signature="1469:1677" ph="SELECT * FRO... diary" />
-                <marker date="1489732894071" expanded="true" signature="1776:1795" ph="SELECT * FRO... diary" />
-                <marker date="1489732894071" expanded="true" signature="1776:1872" ph="SELECT * FRO... diary" />
-                <marker date="1489732894071" expanded="true" signature="1776:1932" ph="SELECT * FRO... diary" />
-                <marker date="1489732894071" expanded="true" signature="1776:1937" ph="SELECT * FRO... diary" />
-                <marker date="1489732894071" expanded="true" signature="2035:2079" ph="SELECT * FRO... diary" />
+                <marker date="1489736068065" expanded="true" signature="294:503" ph="INSERT INTO diary... " />
+                <marker date="1489736068065" expanded="true" signature="557:823" ph="UPDATE diary... " />
+                <marker date="1489736068065" expanded="true" signature="889:1127" ph="UPDATE diary... " />
+                <marker date="1489736068065" expanded="true" signature="1181:1247" ph="UPDATE diary... " />
+                <marker date="1489736068065" expanded="true" signature="1306:1374" ph="UPDATE diary... " />
+                <marker date="1489736068065" expanded="true" signature="1470:1678" ph="SELECT * FRO... diary" />
+                <marker date="1489736068065" expanded="true" signature="1777:1796" ph="SELECT * FRO... diary" />
+                <marker date="1489736068065" expanded="true" signature="1777:1873" ph="SELECT * FRO... diary" />
+                <marker date="1489736068065" expanded="true" signature="1777:1933" ph="SELECT * FRO... diary" />
+                <marker date="1489736068065" expanded="true" signature="1777:1938" ph="SELECT * FRO... diary" />
+                <marker date="1489736068065" expanded="true" signature="2036:2080" ph="SELECT * FRO... diary" />
               </folding>
             </state>
           </provider>
@@ -258,8 +235,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/demo/server/dao/MomentDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/demo/server/service/DiaryService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/demo/server/service/MomentService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/DiaryMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/MomentMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/DiaryMapper.xml" />
       </list>
     </option>
   </component>
@@ -1265,12 +1242,12 @@
       <workItem from="1489156546800" duration="41972000" />
       <workItem from="1489370027766" duration="8708000" />
       <workItem from="1489455103183" duration="8501000" />
-      <workItem from="1489565676200" duration="38051000" />
+      <workItem from="1489565676200" duration="40272000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182316000" />
+    <option name="totallyTimeSpent" value="184537000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1283,7 +1260,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1299,7 +1276,7 @@
       <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3691959" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3193658" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1307,7 +1284,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855436" sideWeight="0.49678457" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25141564" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29105324" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855436" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855436" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26795283" sideWeight="0.8391846" order="0" side_tool="false" content_ui="combo" />
@@ -1364,8 +1341,14 @@
           <properties />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/demo/server/service/DiaryService.java</url>
+          <line>115</line>
+          <properties />
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="25" />
+      <option name="time" value="27" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1520,13 +1503,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="385" column="30" lean-forward="false" selection-start-line="385" selection-start-column="30" selection-end-line="385" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.0.RELEASE/spring-web-4.3.0.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1750,14 +1726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/controller/DiaryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="130" column="62" lean-forward="false" selection-start-line="130" selection-start-column="62" selection-end-line="130" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/service/ProfileService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
@@ -1790,14 +1758,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="344">
           <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/service/DiaryService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="27" column="32" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="27" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -1842,22 +1802,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.0.RELEASE/spring-web-4.3.0.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/controller/DiaryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/server/service/DiaryService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/DiaryMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1404">
-          <caret line="52" column="38" lean-forward="false" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
+        <state relative-caret-position="620">
+          <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
           <folding>
-            <marker date="1489732894071" expanded="true" signature="294:503" ph="INSERT INTO diary... " />
-            <marker date="1489732894071" expanded="true" signature="557:823" ph="UPDATE diary... " />
-            <marker date="1489732894071" expanded="true" signature="889:1126" ph="UPDATE diary... " />
-            <marker date="1489732894071" expanded="true" signature="1180:1246" ph="UPDATE diary... " />
-            <marker date="1489732894071" expanded="true" signature="1305:1373" ph="UPDATE diary... " />
-            <marker date="1489732894071" expanded="true" signature="1469:1677" ph="SELECT * FRO... diary" />
-            <marker date="1489732894071" expanded="true" signature="1776:1795" ph="SELECT * FRO... diary" />
-            <marker date="1489732894071" expanded="true" signature="1776:1872" ph="SELECT * FRO... diary" />
-            <marker date="1489732894071" expanded="true" signature="1776:1932" ph="SELECT * FRO... diary" />
-            <marker date="1489732894071" expanded="true" signature="1776:1937" ph="SELECT * FRO... diary" />
-            <marker date="1489732894071" expanded="true" signature="2035:2079" ph="SELECT * FRO... diary" />
+            <marker date="1489736068065" expanded="true" signature="294:503" ph="INSERT INTO diary... " />
+            <marker date="1489736068065" expanded="true" signature="557:823" ph="UPDATE diary... " />
+            <marker date="1489736068065" expanded="true" signature="889:1127" ph="UPDATE diary... " />
+            <marker date="1489736068065" expanded="true" signature="1181:1247" ph="UPDATE diary... " />
+            <marker date="1489736068065" expanded="true" signature="1306:1374" ph="UPDATE diary... " />
+            <marker date="1489736068065" expanded="true" signature="1470:1678" ph="SELECT * FRO... diary" />
+            <marker date="1489736068065" expanded="true" signature="1777:1796" ph="SELECT * FRO... diary" />
+            <marker date="1489736068065" expanded="true" signature="1777:1873" ph="SELECT * FRO... diary" />
+            <marker date="1489736068065" expanded="true" signature="1777:1933" ph="SELECT * FRO... diary" />
+            <marker date="1489736068065" expanded="true" signature="1777:1938" ph="SELECT * FRO... diary" />
+            <marker date="1489736068065" expanded="true" signature="2036:2080" ph="SELECT * FRO... diary" />
           </folding>
         </state>
       </provider>
