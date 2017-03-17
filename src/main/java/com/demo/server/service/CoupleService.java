@@ -269,6 +269,7 @@ public class CoupleService {
         if (rowCount == 0) {
             resultMsg.setCode(102);
         } else {
+            resultMsg.setCode(100);
             diaryDao.deleteDiaryByUid(uid);
             diaryDao.deleteDiaryByUid(loverId);
             momentDao.deleteMomentByUid(uid);
