@@ -17,6 +17,7 @@ public interface DiaryDao {
     int deleteDiary(@Param("id") long id);
     int deleteDiaryByUid(@Param("uid") long uid);
     Diary selectDiaryByID(@Param("id") long id);
-    List<Diary> selectDiaries(@Param("size") int size, @Param("timeCursor") long timeCursor);
-    List<Diary> selectAllDiaries();
+    List<Diary> selectDiaries(@Param("size") int size, @Param("timeCursor") long timeCursor,
+                              @Param("uid") long uid, @Param("loverId") long loverId);
+    List<Diary> selectAllDiaries(@Param("uid") long uid, @Param("loverId") long loverId);
 }

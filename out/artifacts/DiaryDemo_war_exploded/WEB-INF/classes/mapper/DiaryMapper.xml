@@ -4,10 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.demo.server.dao.DiaryDao">
-
     <insert id="insertDiary" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO diary(title, description, url, eventTime, createTime, updateTime)
-        VALUES (#{title}, #{description}, #{url}, #{eventTime}, #{createTime}, #{updateTime})
+        INSERT INTO diary(title, description, url, eventTime, createTime, updateTime, uid, isPrivate)
+        VALUES (#{title}, #{description}, #{url}, #{eventTime}, #{createTime}, #{updateTime}, #{uid}, #{isPrivate})
     </insert>
 
     <update id="updateDiary">
@@ -16,7 +15,8 @@
         description = #{diary.description},
         url = #{diary.url},
         eventTime = #{diary.eventTime},
-        updateTime = #{diary.updateTime}
+        updateTime = #{diary.updateTime},
+        isPrivate = #{diary.isPrivate}
         WHERE id = #{id}
     </update>
 
@@ -26,6 +26,7 @@
         description = #{diary.description},
         eventTime = #{diary.eventTime},
         updateTime = #{diary.updateTime}
+        isPrivate = #{diary.isPrivate}
         WHERE id = #{id}
     </update>
 
@@ -43,13 +44,13 @@
 
     <select id="selectDiaries" resultType="com.demo.server.bean.Diary">
         SELECT * FROM diary
-        WHERE isDeleted = FALSE and eventTime &lt; #{timeCursor}
+        WHERE (uid = #{uid} or uid = #{loverId} and isPrivate = false) and isDeleted = FALSE and eventTime &lt; #{timeCursor}
         ORDER BY eventTime DESC, updateTime DESC LIMIT #{size}
     </select>
 
     <select id="selectAllDiaries" resultType="com.demo.server.bean.Diary">
         SELECT * FROM diary
-        WHERE isDeleted = FALSE
+        WHERE (uid = #{uid} or uid = #{loverId} and isPrivate = false) and isDeleted = FALSE
         ORDER BY eventTime DESC, updateTime DESC
     </select>
 

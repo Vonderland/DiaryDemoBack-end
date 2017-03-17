@@ -7,10 +7,7 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Vonderland on 2017/2/1.
@@ -26,47 +23,50 @@ public class MomentController {
 
     @RequestMapping(value = "/allMoment", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String getAllMoment() {
-        ResultMsg resultMsg = momentService.getAllMoment();
+    public String getAllMoment(@RequestHeader(value = "Authorization", required = false) String token) {
+        ResultMsg resultMsg = momentService.getAllMoment(token);
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
     }
 
     @RequestMapping(value = "/moment", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String getMoment(@RequestParam(value = "size", required = false, defaultValue = "20") String size,
+    public String getMoment(@RequestHeader(value = "Authorization", required = false) String token,
+                            @RequestParam(value = "size", required = false, defaultValue = "20") String size,
                              @RequestParam(value = "timeCursor", required = false, defaultValue = "-1") String timeCursor) {
         long cursor = Long.parseLong(timeCursor);
         if (cursor < 0) {
             cursor = System.currentTimeMillis();
         }
-        ResultMsg resultMsg = momentService.getMoment(Integer.parseInt(size), cursor);
+        ResultMsg resultMsg = momentService.getMoment(token, Integer.parseInt(size), cursor);
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
     }
 
     @RequestMapping(value = "/addMoment", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String addMoment(@RequestParam(value = "title") String title,
+    public String addMoment(@RequestHeader(value = "Authorization", required = false) String token,
+                            @RequestParam(value = "title") String title,
                            @RequestParam(value = "location", required = false) String location,
                            @RequestParam(value = "eventTime") String eventTime) {
         ResultMsg resultMsg;
         Moment moment = generateMoment(title, location, eventTime, true);
-        resultMsg = momentService.addMoment(moment);
+        resultMsg = momentService.addMoment(token, moment);
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
     }
 
     @RequestMapping(value = "/updateMoment", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String updateMoment(@RequestParam(value = "id") String id,
+    public String updateMoment(@RequestHeader(value = "Authorization", required = false) String token,
+                               @RequestParam(value = "id") String id,
                               @RequestParam(value = "title") String title,
                               @RequestParam(value = "location") String location,
                               @RequestParam(value = "eventTime") String eventTime) {
         ResultMsg resultMsg;
         Moment moment = generateMoment(title, location, eventTime, false);
         moment.setId(Long.parseLong(id));
-        resultMsg = momentService.updateMoment(moment, Long.parseLong(id));
+        resultMsg = momentService.updateMoment(token, moment, Long.parseLong(id));
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
 
@@ -74,8 +74,9 @@ public class MomentController {
 
     @RequestMapping(value = "/deleteMoment", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String deleteMoment(@RequestParam(value = "id") String id) {
-        ResultMsg resultMsg = momentService.deleteMoment(Long.parseLong(id));
+    public String deleteMoment(@RequestHeader(value = "Authorization", required = false) String token,
+                               @RequestParam(value = "id") String id) {
+        ResultMsg resultMsg = momentService.deleteMoment(token, Long.parseLong(id));
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
     }

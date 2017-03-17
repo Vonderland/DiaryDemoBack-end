@@ -44,37 +44,40 @@ public class DiaryController {
     }
     @RequestMapping(value = "/allDiaries", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String getAllDiaries() {
-        ResultMsg resultMsg = diaryService.getAllDiaries();
+    public String getAllDiaries(@RequestHeader(value = "Authorization", required = false) String token) {
+        ResultMsg resultMsg = diaryService.getAllDiaries(token);
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
     }
 
     @RequestMapping(value = "/diaries", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String getDiaries(@RequestParam(value = "size", required = false, defaultValue = "20") String size,
+    public String getDiaries(@RequestHeader(value = "Authorization", required = false) String token,
+                             @RequestParam(value = "size", required = false, defaultValue = "20") String size,
                              @RequestParam(value = "timeCursor", required = false, defaultValue = "-1") String timeCursor) {
         long cursor = Long.parseLong(timeCursor);
         if (cursor < 0) {
             cursor = System.currentTimeMillis();
         }
-        ResultMsg resultMsg = diaryService.getDiaries(Integer.parseInt(size), cursor);
+        ResultMsg resultMsg = diaryService.getDiaries(token, Integer.parseInt(size), cursor);
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
     }
 
     @RequestMapping(value = "/addDiary", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String addDiary(@RequestParam(value = "title") String title,
+    public String addDiary(@RequestHeader(value = "Authorization", required = false) String token,
+                           @RequestParam(value = "title") String title,
                            @RequestParam(value = "description") String description,
                            @RequestParam(value = "eventTime") String eventTime,
+                           @RequestParam(value = "isPrivate", required = false) boolean isPrivate,
                            @RequestParam(value = "picture", required = false) CommonsMultipartFile file,
                            HttpServletRequest request) {
         ResultMsg resultMsg;
         Diary diary;
 
         try {
-            diary = generateDiary(title, description, file, eventTime, request, true);
+            diary = generateDiary(title, description, file, eventTime, request, true, isPrivate);
         } catch (Exception ex) {
             resultMsg = new ResultMsg();
             resultMsg.setCode(104);
@@ -82,16 +85,18 @@ public class DiaryController {
             return gson.toJson(resultMsg);
         }
 
-        resultMsg = diaryService.addDiary(diary);
+        resultMsg = diaryService.addDiary(token, diary);
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
     }
 
     @RequestMapping(value = "/updateDiary", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String updateDiary(@RequestParam(value = "id") String id,
+    public String updateDiary(@RequestHeader(value = "Authorization", required = false) String token,
+                              @RequestParam(value = "id") String id,
                               @RequestParam(value = "title") String title,
                               @RequestParam(value = "description") String description,
+                              @RequestParam(value = "isPrivate", required = false) boolean isPrivate,
                               @RequestParam(value = "picture", required = false) CommonsMultipartFile file,
                               @RequestParam(value = "eventTime") String eventTime,
                               @RequestParam(value = "pictureChanged") String pictureChanged,//0：没改变，1：改变
@@ -99,7 +104,7 @@ public class DiaryController {
         ResultMsg resultMsg;
         Diary diary;
         try {
-            diary = generateDiary(title, description, file, eventTime, request, false);
+            diary = generateDiary(title, description, file, eventTime, request, false, isPrivate);
         } catch (Exception ex) {
             ex.printStackTrace();
             resultMsg = new ResultMsg();
@@ -109,10 +114,10 @@ public class DiaryController {
         }
         diary.setId(Long.parseLong(id));
         if (Integer.parseInt(pictureChanged) == 0 ){
-            resultMsg = diaryService.updateDiaryNotChangePic(diary, Long.parseLong(id));
+            resultMsg = diaryService.updateDiaryNotChangePic(token, diary, Long.parseLong(id));
 
         } else {
-            resultMsg = diaryService.updateDiary(diary, Long.parseLong(id));
+            resultMsg = diaryService.updateDiary(token, diary, Long.parseLong(id));
         }
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
@@ -121,18 +126,20 @@ public class DiaryController {
 
     @RequestMapping(value = "/deleteDiary", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String deleteDiary(@RequestParam(value = "id") String id) {
-        ResultMsg resultMsg = diaryService.deleteDiary(Long.parseLong(id));
+    public String deleteDiary(@RequestHeader(value = "Authorization", required = false) String token,
+                              @RequestParam(value = "id") String id) {
+        ResultMsg resultMsg = diaryService.deleteDiary(token, Long.parseLong(id));
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
     }
 
     private Diary generateDiary(String title, String description, CommonsMultipartFile file, String eventTime,
-                               HttpServletRequest request, boolean add) throws Exception{
+                               HttpServletRequest request, boolean add, boolean isPrivate) throws Exception{
         Diary diary = new Diary();
         diary.setTitle(title);
         diary.setDescription(description);
         diary.setEventTime(Long.parseLong(eventTime));
+        diary.setPrivate(isPrivate);
 
         if (file != null) {
             String path = ImageUtil.uploadDiaryImage(file, request);

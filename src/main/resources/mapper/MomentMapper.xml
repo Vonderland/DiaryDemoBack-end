@@ -6,8 +6,8 @@
 <mapper namespace="com.demo.server.dao.MomentDao">
 
     <insert id="insertMoment" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO moment(title, location, eventTime, createTime, updateTime)
-        VALUES (#{title}, #{location}, #{eventTime}, #{createTime}, #{updateTime})
+        INSERT INTO moment(title, location, eventTime, createTime, updateTime, uid)
+        VALUES (#{title}, #{location}, #{eventTime}, #{createTime}, #{updateTime}, #{uid})
     </insert>
 
     <update id="updateMoment">
@@ -33,13 +33,13 @@
 
     <select id="selectMoment" resultType="com.demo.server.bean.Moment">
         SELECT * FROM moment
-        WHERE isDeleted = FALSE and eventTime &lt; #{timeCursor}
+        WHERE (uid = #{uid} or uid = #{loverId}) and isDeleted = FALSE and eventTime &lt; #{timeCursor}
         ORDER BY eventTime DESC, updateTime DESC LIMIT #{size}
     </select>
 
     <select id="selectAllMoment" resultType="com.demo.server.bean.Moment">
         SELECT * FROM moment
-        WHERE isDeleted = FALSE
+        WHERE (uid = #{uid} or uid = #{loverId}) and isDeleted = FALSE
         ORDER BY eventTime DESC, updateTime
     </select>
 

@@ -1,8 +1,11 @@
 package com.demo.server.service;
 
-import com.demo.server.bean.Diary;
-import com.demo.server.bean.ResultMsg;
+import com.demo.server.bean.*;
+import com.demo.server.dao.AuthDao;
+import com.demo.server.dao.CoupleDao;
 import com.demo.server.dao.DiaryDao;
+import com.demo.server.dao.UserDao;
+import com.demo.utils.TokenUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,13 +20,29 @@ import java.util.List;
 public class DiaryService {
     @Resource
     private DiaryDao diaryDao;
+    @Resource
+    private AuthDao authDao;
+    @Resource
+    private UserDao userDao;
+    @Resource
+    private CoupleDao coupleDao;
 
-    public ResultMsg addDiary(Diary diary) {
+    public ResultMsg addDiary(String token, Diary diary) {
         ResultMsg resultMsg = new ResultMsg();
+        if (!checkTokenInvalidation(token, resultMsg)) {
+            return resultMsg;
+        }// token 不合法
+        long uid = TokenUtil.getUidFromToken(token);
+        User user = userDao.selectUserByUid(uid);
+        if (user == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } // 用户不存在
         if (diary == null) {
             resultMsg.setCode(101);
             resultMsg.setMessage("diary is null");
         } else {
+            diary.setUid(uid);
             try {
                 int rowCount = diaryDao.insertDiary(diary);
                 System.out.println("rowCount = " + rowCount);
@@ -44,8 +63,17 @@ public class DiaryService {
         return resultMsg;
     }
 
-    public ResultMsg  updateDiary(Diary diary, long id) {
+    public ResultMsg  updateDiary(String token, Diary diary, long id) {
         ResultMsg resultMsg = new ResultMsg();
+        if (!checkTokenInvalidation(token, resultMsg)) {
+            return resultMsg;
+        }// token 不合法
+        long uid = TokenUtil.getUidFromToken(token);
+        User user = userDao.selectUserByUid(uid);
+        if (user == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } // 用户不存在
         if (diary == null) {
             resultMsg.setCode(101);
             resultMsg.setMessage("diary is null");
@@ -69,8 +97,17 @@ public class DiaryService {
         return resultMsg;
     }
 
-    public ResultMsg updateDiaryNotChangePic(Diary diary, long id) {
+    public ResultMsg updateDiaryNotChangePic(String token, Diary diary, long id) {
         ResultMsg resultMsg = new ResultMsg();
+        if (!checkTokenInvalidation(token, resultMsg)) {
+            return resultMsg;
+        }// token 不合法
+        long uid = TokenUtil.getUidFromToken(token);
+        User user = userDao.selectUserByUid(uid);
+        if (user == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } // 用户不存在
         if (diary == null) {
             resultMsg.setCode(101);
             resultMsg.setMessage("diary is null");
@@ -94,8 +131,17 @@ public class DiaryService {
         return resultMsg;
     }
 
-    public ResultMsg deleteDiary(long id) {
+    public ResultMsg deleteDiary(String token, long id) {
         ResultMsg resultMsg = new ResultMsg();
+        if (!checkTokenInvalidation(token, resultMsg)) {
+            return resultMsg;
+        }// token 不合法
+        long uid = TokenUtil.getUidFromToken(token);
+        User user = userDao.selectUserByUid(uid);
+        if (user == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } // 用户不存在
         try {
             int rowCount = diaryDao.deleteDiary(id);
             if (rowCount == 0) {
@@ -110,10 +156,24 @@ public class DiaryService {
         return resultMsg;
     }
 
-    public ResultMsg getDiaries(int size, long timeCursor) {
+    public ResultMsg getDiaries(String token, int size, long timeCursor) {
         ResultMsg resultMsg = new ResultMsg();
+        if (!checkTokenInvalidation(token, resultMsg)) {
+            return resultMsg;
+        }// token 不合法
+        long uid = TokenUtil.getUidFromToken(token);
+        User user = userDao.selectUserByUid(uid);
+        if (user == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } // 用户不存在
         try {
-            List<Diary> diaryList = diaryDao.selectDiaries(size, timeCursor);
+            Couple couple = coupleDao.selectCoupleByLover(uid);
+            long loverId = -1;
+            if (couple != null) {
+                loverId = couple.getLoverAId() == uid ? couple.getLoverBId() : couple.getLoverAId();
+            }
+            List<Diary> diaryList = diaryDao.selectDiaries(size, timeCursor, uid, loverId);
             resultMsg.setCode(100);
             resultMsg.setSize(diaryList.size());
             resultMsg.setData(diaryList);
@@ -124,10 +184,24 @@ public class DiaryService {
         return resultMsg;
     }
 
-    public ResultMsg getAllDiaries() {
+    public ResultMsg getAllDiaries(String token) {
         ResultMsg resultMsg = new ResultMsg();
+        if (!checkTokenInvalidation(token, resultMsg)) {
+            return resultMsg;
+        }// token 不合法
+        long uid = TokenUtil.getUidFromToken(token);
+        User user = userDao.selectUserByUid(uid);
+        if (user == null) {
+            resultMsg.setCode(107);
+            return resultMsg;
+        } // 用户不存在
         try {
-            List<Diary> diaryList = diaryDao.selectAllDiaries();
+            Couple couple = coupleDao.selectCoupleByLover(uid);
+            long loverId = -1;
+            if (couple != null) {
+                loverId = couple.getLoverAId() == uid ? couple.getLoverBId() : couple.getLoverAId();
+            }
+            List<Diary> diaryList = diaryDao.selectAllDiaries(uid, loverId);
             resultMsg.setCode(100);
             resultMsg.setSize(diaryList.size());
             resultMsg.setData(diaryList);
@@ -136,5 +210,22 @@ public class DiaryService {
             resultMsg.setCode(103);
         }
         return resultMsg;
+    }
+
+    private boolean checkTokenInvalidation(String token, ResultMsg resultMsg) {
+        if (token == null) {
+            resultMsg.setCode(108);
+            return false;
+        }
+        long uid = TokenUtil.getUidFromToken(token);
+        Authorization authorization = authDao.selectAuthByUid(uid);
+        if (authorization == null) {
+            resultMsg.setCode(107);
+            return false;
+        } else if (!token.equals(authorization.getToken())) {
+            resultMsg.setCode(105);
+            return false;
+        }
+        return true;
     }
 }
