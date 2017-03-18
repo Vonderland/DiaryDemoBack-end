@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface BlackHouseDao {
     BlackHouse selectBlackHouseById(@Param("fromId")long fromId, @Param("toId")long toId);
     int insertBlackHouse(BlackHouse blackHouse);
-    int updateBlackHouseState(@Param("fromId")long fromId, @Param("toId")long toId, @Param("isBlack")boolean isBlack);
+    int updateBlackHouseState(@Param("fromId")long fromId, @Param("toId")long toId, @Param("isReleased")boolean isReleased);
 }

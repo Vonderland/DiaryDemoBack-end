@@ -10,7 +10,7 @@
 
     <update id="updateBlackHouseState">
         UPDATE blackhouse SET
-        isReleased = #{isBlack}
+        isReleased = #{isReleased}
         WHERE fromId = #{fromId} and toId = #{toId}
     </update>
 

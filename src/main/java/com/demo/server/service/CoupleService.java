@@ -231,7 +231,7 @@ public class CoupleService {
             if (existedBlackHouse == null) {
                 BlackHouse blackHouse = new BlackHouse();
                 blackHouse.setFromId(uid);
-                blackHouse.setId(loverId);
+                blackHouse.setToId(loverId);
                 int rowCount = blackHouseDao.insertBlackHouse(blackHouse);
                 if (rowCount == 0) {
                     resultMsg.setCode(102);
@@ -242,7 +242,7 @@ public class CoupleService {
                 resultMsg.setCode(117);// 对方已经先发制人关小黑屋
             }
         } else {
-            blackHouseDao.updateBlackHouseState(uid, loverId, false);
+            blackHouseDao.updateBlackHouseState(uid, loverId, true);
             resultMsg.setCode(100);
         }
         return resultMsg;
@@ -274,8 +274,8 @@ public class CoupleService {
             diaryDao.deleteDiaryByUid(loverId);
             momentDao.deleteMomentByUid(uid);
             momentDao.deleteMomentByUid(loverId);
-            blackHouseDao.updateBlackHouseState(uid, loverId, false);
-            blackHouseDao.updateBlackHouseState(loverId, uid, false);
+            blackHouseDao.updateBlackHouseState(uid, loverId, true);
+            blackHouseDao.updateBlackHouseState(loverId, uid, true);
         }
         return resultMsg;
     }
