@@ -95,4 +95,13 @@ public class CoupleController {
         Gson gson = new Gson();
         return gson.toJson(resultMsg);
     }
+
+    @RequestMapping(value = "/loverProfile", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public String loverProfile(@RequestHeader(value = "Authorization", required = false) String token) {
+        ResultMsg resultMsg;
+        resultMsg = coupleService.getLoverProfile(token);
+        Gson gson = new Gson();
+        return gson.toJson(resultMsg);
+    }
 }

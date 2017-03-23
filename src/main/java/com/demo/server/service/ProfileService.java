@@ -127,39 +127,4 @@ public class ProfileService {
         }
         return true;
     }
-
-    public ResultMsg getLoverProfile(String token) {
-        ResultMsg resultMsg = new ResultMsg();
-        if (!checkTokenInvalidation(token, resultMsg)) {
-            return resultMsg;
-        }
-
-        long uid = TokenUtil.getUidFromToken(token);
-        User user = userDao.selectUserByUid(uid);
-        if (user == null) {
-            resultMsg.setCode(107);
-        } else {
-            resultMsg.setCode(100);
-            Couple couple = coupleDao.selectCoupleByLover(uid);
-            if (couple == null) {
-                resultMsg.setCode(116);
-            } else {
-                long loverId = couple.getLoverAId() == uid ? couple.getLoverBId() : couple.getLoverAId();
-                User lover = userDao.selectUserByUid(loverId);
-                if (lover != null) {
-                    Profile profile = new Profile(lover);
-                    profile.setLoverId(uid);
-                    BlackHouse blackHouse = blackHouseDao.selectBlackHouseById(uid, loverId);
-                    if (blackHouse == null) {
-                        profile.setBlack(false);
-                    } else {
-                        profile.setBlack(true);
-                    }
-                    resultMsg.setData(profile);
-                }
-                resultMsg.setCode(100);
-            }
-        }
-        return resultMsg;
-    }
 }
